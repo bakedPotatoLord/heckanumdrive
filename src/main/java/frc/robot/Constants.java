@@ -14,7 +14,7 @@ package frc.robot;
  */
 public final class Constants {
 
-    m_frontLeft = 
+    public final int joystickPort = 0;
 
 
 }
