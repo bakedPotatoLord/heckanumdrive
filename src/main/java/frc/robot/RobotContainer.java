@@ -24,15 +24,20 @@ public class RobotContainer {
   private final Drive m_autoCommand = new Drive(m_exampleSubsystem);
 
 
-  public Joystick stick = new Joystick(0);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
 
+		Joystick stick = new Joystick(0);
+		CANSparkMax m_fl = new CANSparkMax(5,MotorType.kBrushed);
+		CANSparkMax m_rl = new CANSparkMax(6,MotorType.kBrushed);
+		CANSparkMax m_fr = new CANSparkMax(7,MotorType.kBrushed);
+		CANSparkMax m_rr = new CANSparkMax(8,MotorType.kBrushed);
 
-    
+		MecanumDrive m_drive = new MecanumDrive(m_fl,m_fr,m_rl,m_rr)
+		
   }
 
   /**
