@@ -5,21 +5,31 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+//import frc.robot.RobotContainer;
+import edu.wpi.first.wpilibj.drive.MecanumDrive;
+
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class DriveBase extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
-  public DriveBase() {}
+  public DriveBase() {
+    m_fr.setInverted(true);
+    m_rr.setInverted(true);
+  }
 
   
 
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
-		m_drive.driveCartesian(stick.getY(),stick.getX(),stick.getZ());
+  
+  private final CANSparkMax m_fl = new CANSparkMax(5,MotorType.kBrushed);
+  private final CANSparkMax m_rl = new CANSparkMax(6,MotorType.kBrushed);
+  private final CANSparkMax m_fr = new CANSparkMax(7,MotorType.kBrushed);
+  private final CANSparkMax m_rr = new CANSparkMax(8,MotorType.kBrushed);
+
+  private final MecanumDrive m_drive = new MecanumDrive(m_fl,m_fr,m_rl,m_rr);
+  
+  public void driveCartesian(double y,double x,double z){
+    m_drive.driveCartesian(y, x, z, 0.0);
   }
 
-  @Override
-  public void simulationPeriodic() {
-    // This method will be called once per scheduler run during simulation
-  }
 }
