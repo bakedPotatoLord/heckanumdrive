@@ -9,8 +9,9 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DriveBase;
+import frc.robot.subsystems.FRCGyro;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
@@ -24,6 +25,7 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriveBase m_driveBase = new DriveBase();
+  private final FRCGyro m_gyro = new FRCGyro();
 
 
 
@@ -39,6 +41,12 @@ public class RobotContainer {
         () ->
           m_driveBase.driveCartesian(stick.getY(), stick.getX(),stick.getZ(),stick.getThrottle()),
         m_driveBase));
+
+    m_gyro.setDefaultCommand(
+      new RunCommand(
+        () ->
+          SmartDashboard.putNumber("gyroAngle", m_gyro.getAngle()),
+        m_gyro));
   
 
     // Configure the button bindings
