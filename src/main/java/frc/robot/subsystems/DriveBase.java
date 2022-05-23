@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
 import edu.wpi.first.math.MathUtil;
 
 //import frc.robot.RobotContainer;
@@ -33,11 +34,13 @@ public class DriveBase extends SubsystemBase {
     m_drive = new MecanumDrive(m_fl,m_rl,m_fr,m_rr);
   }
 
-  public void driveCartesian(double y,double x,double z){
+  public void driveCartesian(double y,double x,double z,double throtl){
     Double yd=MathUtil.applyDeadband(y, 0.1);
     Double xd=MathUtil.applyDeadband(x, 0.1);
     Double zd=MathUtil.applyDeadband(z, 0.25);
 
-    m_drive.driveCartesian(yd, -xd, -zd, 0.0);
+    Double throttle = ((-throtl)+1.7)/2.7;
+
+    m_drive.driveCartesian(yd*throttle, -xd*throttle, -zd*throttle);
   }
 }
