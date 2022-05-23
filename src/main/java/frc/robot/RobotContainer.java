@@ -37,7 +37,7 @@ public class RobotContainer {
     m_driveBase.setDefaultCommand(
       new RunCommand(
         () ->
-          m_driveBase.driveCartesian(stick.getY(), stick.getX(),stick.getZ()),
+          m_driveBase.driveCartesian(stick.getY(), stick.getX(),stick.getZ(),stick.getThrottle()),
         m_driveBase));
   
 
