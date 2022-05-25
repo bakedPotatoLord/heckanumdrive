@@ -16,5 +16,12 @@ public final class Constants {
 
     public int m_frontLeft_id = 4;
 
+    
+    public final int joystickPort = 0;
+
+    public final double yDeadband = 0.1;
+    public final double xDeadband = 0.1;
+    public final double zDeadband = 0.1;
+
 
 }

@@ -4,12 +4,17 @@
 
 package frc.robot;
 
+
+
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.Drive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DriveBase;
+import frc.robot.subsystems.FRCGyro;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -19,20 +24,33 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final DriveBase m_exampleSubsystem = new DriveBase();
+  private final DriveBase m_driveBase = new DriveBase();
+  private final FRCGyro m_gyro = new FRCGyro();
 
-  private final Drive m_autoCommand = new Drive(m_exampleSubsystem);
 
 
-  public Joystick stick = new Joystick(0);
+  
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+
+    Joystick stick = new Joystick(0);
+
+    m_driveBase.setDefaultCommand(
+      new RunCommand(
+        () ->
+          m_driveBase.driveCartesian(stick.getY(), stick.getX(),stick.getZ(),stick.getThrottle()),
+        m_driveBase));
+
+    m_gyro.setDefaultCommand(
+      new RunCommand(
+        () ->
+          SmartDashboard.putNumber("gyroAngle", m_gyro.getAngle()),
+        m_gyro));
+  
+
     // Configure the button bindings
     configureButtonBindings();
-
-
-    
   }
 
   /**
@@ -41,7 +59,9 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {}
+  private void configureButtonBindings() {
+    
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
@@ -50,6 +70,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    return new InstantCommand();
   }
 }
