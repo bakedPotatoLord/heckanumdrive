@@ -34,12 +34,11 @@ public class DriveBase extends SubsystemBase {
     m_drive = new MecanumDrive(m_fl,m_rl,m_fr,m_rr);
   }
 
-  public void driveCartesian(double y,double x,double z,double throtl){
+  public void driveCartesian(double y,double x,double z,double throttle){
     Double yd=MathUtil.applyDeadband(y, 0.1);
     Double xd=MathUtil.applyDeadband(x, 0.1);
     Double zd=MathUtil.applyDeadband(z, 0.25);
 
-    Double throttle = ((-throtl)+1.7)/2.7;
 
     m_drive.driveCartesian(yd*throttle, -xd*throttle, -zd*throttle);
   }
