@@ -15,6 +15,8 @@ public class Spin extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final DriveBase m_driveBase;
 
+  Timer spinTimer = new Timer();
+  
   /**
    * Creates a new ExampleCommand.
    *
@@ -26,7 +28,6 @@ public class Spin extends CommandBase {
     addRequirements(subsystem);
   }
 
-  Timer spinTimer = new Timer();
 
   // Called when the command is initially scheduled.
   @Override
@@ -39,7 +40,7 @@ public class Spin extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-		m_driveBase.driveCartesian(0, 0, 0.5,1); 
+		m_driveBase.driveCartesian(0, 0, 1,1); 
 	}
 
   // Called once the command ends or is interrupted.
