@@ -31,6 +31,7 @@ public class RobotContainer {
 
   private final Alert sayHello = new Alert();
   private final Spin spin = new Spin(m_driveBase);
+  private final Test driveForward = new Test(m_driveBase);
 
   private final Joystick stick = new Joystick(0);
   
@@ -65,8 +66,10 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     new JoystickButton(stick, 1).whenPressed(sayHello);
-    
+
     new JoystickButton(stick, 2).whenPressed(spin);
+
+    new JoystickButton(stick, 3).whenPressed(driveForward);
   }
 
   /**
