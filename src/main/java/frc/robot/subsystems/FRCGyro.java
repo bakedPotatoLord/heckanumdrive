@@ -8,15 +8,11 @@ public class FRCGyro extends SubsystemBase {
   AnalogGyro m_gyro = new AnalogGyro(0);
 
   public FRCGyro() {
-    m_gyro.calibrate();
-    
+    m_gyro.calibrate(); 
   }
 
   public double getAngle(){
     return m_gyro.getAngle();
-  }
-
-
-    
+  } 
 }
 
