@@ -3,9 +3,9 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.subsystems.*;
 
-public class Test extends WaitCommand {
+public class DriveForward extends WaitCommand {
     DriveBase driveBase;
-    public Test(DriveBase subsystem){
+    public DriveForward(DriveBase subsystem){
         super(2);
         
         driveBase = subsystem;
@@ -15,6 +15,6 @@ public class Test extends WaitCommand {
     @Override
     public void execute() {
  
-        driveBase.driveCartesian(0.5,0,0,1);
+        driveBase.driveCartesian(1,0,0,1);
     }
 }
