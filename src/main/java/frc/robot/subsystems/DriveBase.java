@@ -11,7 +11,8 @@ import edu.wpi.first.math.MathUtil;
 //import frc.robot.RobotContainer;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 
-
+import com.ctre.phoenix.motorcontrol.VictorSPXControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -25,6 +26,9 @@ public class DriveBase extends SubsystemBase {
   private final CANSparkMax m_fr = new CANSparkMax(7,MotorType.kBrushed);
   private final CANSparkMax m_rr = new CANSparkMax(8,MotorType.kBrushed);
 
+  private final VictorSPX m_cv =new VictorSPX(9);
+  private final VictorSPX m_ch =new VictorSPX(10);
+
   private final MecanumDrive m_drive;
   
   public DriveBase() {
@@ -32,6 +36,9 @@ public class DriveBase extends SubsystemBase {
     m_fr.setInverted(true);
     m_rr.setInverted(true);
     m_drive = new MecanumDrive(m_fl,m_rl,m_fr,m_rr);
+
+    m_cv.setInverted(false);
+    m_ch.setInverted(false);
   }
 
   public void driveCartesian(double y,double x,double z,double throttle){
@@ -39,7 +46,9 @@ public class DriveBase extends SubsystemBase {
     Double xd=MathUtil.applyDeadband(x, 0.1);
     Double zd=MathUtil.applyDeadband(z, 0.25);
 
-
     m_drive.driveCartesian(yd*throttle, -xd*throttle, -zd*throttle);
+
+    m_ch.set(VictorSPXControlMode.PercentOutput , x*throttle);
+    m_cv.set(VictorSPXControlMode.PercentOutput , y*throttle);
   }
 }
