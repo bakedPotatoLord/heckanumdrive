@@ -31,7 +31,7 @@ public class RobotContainer {
 
   private final Alert sayHello = new Alert();
   private final Spin spin = new Spin(m_driveBase);
-  private final Test driveForward = new Test(m_driveBase);
+  private final DriveForward driveForward = new DriveForward(m_driveBase);
 
   private final Joystick stick = new Joystick(0);
   
