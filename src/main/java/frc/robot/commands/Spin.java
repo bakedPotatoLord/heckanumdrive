@@ -40,7 +40,7 @@ public class Spin extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-		m_driveBase.driveCartesian(0, 0, 0.5,1); 
+		m_driveBase.driveCartesian(0, 0, 1,1); 
 	}
 
   // Called once the command ends or is interrupted.

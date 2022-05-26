@@ -44,7 +44,7 @@ public class RobotContainer {
     m_driveBase.setDefaultCommand(
       new RunCommand(
         () ->
-          m_driveBase.driveCartesian(stick.getY(), stick.getX(),stick.getZ(),stick.getThrottle()),
+          m_driveBase.driveCartesian(stick.getY(), stick.getX(),stick.getZ(), ((-stick.getThrottle())+1.7)/2.7),
         m_driveBase));
 
     m_gyro.setDefaultCommand(
@@ -79,6 +79,10 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return new InstantCommand();
+    return new InstantCommand().andThen(
+      ()->System.out.println("action 0")
+    ).andThen(
+      ()->System.out.println("action 1")
+    );
   }
 }
