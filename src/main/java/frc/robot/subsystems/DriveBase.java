@@ -11,8 +11,8 @@ import edu.wpi.first.math.MathUtil;
 //import frc.robot.RobotContainer;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 
-import com.ctre.phoenix.motorcontrol.VictorSPXControlMode;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -26,8 +26,8 @@ public class DriveBase extends SubsystemBase {
   private final CANSparkMax m_fr = new CANSparkMax(7,MotorType.kBrushed);
   private final CANSparkMax m_rr = new CANSparkMax(8,MotorType.kBrushed);
 
-  private final VictorSPX m_cv =new VictorSPX(9);
-  private final VictorSPX m_ch =new VictorSPX(10);
+  private final TalonSRX m_cv =new TalonSRX(9);
+  private final TalonSRX m_ch =new TalonSRX(10);
 
   private final MecanumDrive m_drive;
   
@@ -48,7 +48,7 @@ public class DriveBase extends SubsystemBase {
 
     m_drive.driveCartesian(yd*throttle, -xd*throttle, -zd*throttle);
 
-    m_ch.set(VictorSPXControlMode.PercentOutput , x*throttle);
-    m_cv.set(VictorSPXControlMode.PercentOutput , y*throttle);
+    m_ch.set(TalonSRXControlMode.PercentOutput , x*throttle);
+    m_cv.set(TalonSRXControlMode.PercentOutput  , y*throttle);
   }
 }
