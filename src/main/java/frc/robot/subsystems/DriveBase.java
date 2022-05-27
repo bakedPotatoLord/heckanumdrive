@@ -48,7 +48,7 @@ public class DriveBase extends SubsystemBase {
 
     m_drive.driveCartesian(yd*throttle, -xd*throttle, -zd*throttle);
 
-    m_ch.set(TalonSRXControlMode.PercentOutput , x*throttle);
-    m_cv.set(TalonSRXControlMode.PercentOutput  , y*throttle);
+    m_ch.set(TalonSRXControlMode.PercentOutput , x*throttle*0.5);
+    m_cv.set(TalonSRXControlMode.PercentOutput  , y*throttle*0.5);
   }
 }
